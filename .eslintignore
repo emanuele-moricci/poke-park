@@ -1,0 +1,13 @@
+// PROJECT
+node_modules/*
+.next/*
+
+// GENERATED
+build/*
+public/*
+coverage/*
+
+// CONFIGURATIONS
+next.config.js
+postcss.config.js
+tailwind.config.js
