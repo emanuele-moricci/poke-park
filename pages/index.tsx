@@ -1,12 +1,18 @@
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import Seo from 'components/seo';
+import Pokemon from 'components/pokemon/Pokemon';
 
-import mukTest from 'assets/images/muk.png';
 import bgTest from 'assets/images/pkmn-test-bg.jpeg';
 
 const Home: NextPage = () => {
+  const [posX] = useState(Math.round(0 + Math.random() * 90));
+  const [posY] = useState(Math.round(20 + Math.random() * (80 - 20)));
+  const [posX2] = useState(Math.round(0 + Math.random() * 90));
+  const [posY2] = useState(Math.round(20 + Math.random() * (80 - 20)));
+
   return (
     <div className="home">
       <Seo />
@@ -26,9 +32,16 @@ const Home: NextPage = () => {
           Welcome to the Poképark!
         </h1>
 
-        <div className="flex items-end justify-center min-h-[65vh] animate-chill">
-          <Image src={mukTest} alt="Muk Test" />
-        </div>
+        <Pokemon
+          sprite="https://img.pokemondb.net/sprites/lets-go-pikachu-eevee/normal/muk.png"
+          posX={posX}
+          posY={posY}
+        />
+        <Pokemon
+          sprite="https://img.pokemondb.net/sprites/black-white/normal/porygon-z.png"
+          posX={posX2}
+          posY={posY2}
+        />
       </main>
 
       <footer className="flex flex-1 flex-row justify-center items-center py-8 fixed bottom-0 w-full">
