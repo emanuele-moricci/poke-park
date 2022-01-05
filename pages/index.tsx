@@ -4,11 +4,22 @@ import Image from 'next/image';
 import Seo from 'components/seo';
 
 import mukTest from 'assets/images/muk.png';
+import bgTest from 'assets/images/pkmn-test-bg.jpeg';
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-center bg-cover bg-[url('../assets/images/pkmn-test-bg.jpeg')]">
+    <div className="home">
       <Seo />
+
+      <div className="absolute min-h-screen top-0 bottom-0 left-0 right-0 -z-10">
+        <Image
+          src={bgTest}
+          alt="BG Test"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
 
       <main className="min-h-screen py-16">
         <h1 className="text-center m-0 leading-[5rem] text-6xl animate-pulse">
