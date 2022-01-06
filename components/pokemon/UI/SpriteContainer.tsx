@@ -4,21 +4,25 @@ interface ISpriteContainerProps {
   startX: number;
   startY: number;
   sprite: string;
-  animation: string;
+  move: { x: number | null; y: number | null };
+  flip: string;
 }
 
 const SpriteContainer = ({
   startX,
   startY,
   sprite,
-  animation,
+  move: { x, y },
+  flip,
 }: ISpriteContainerProps): JSX.Element => {
   return (
     <div
-      className="absolute animate-chill"
-      style={{ top: `${startY}%`, left: `${startX}%` }}
+      className="absolute"
+      style={{ top: `${y ?? startY}%`, left: `${x ?? startX}%` }}
     >
-      <Sprite sprite={sprite} alt={sprite} animation={animation} />
+      <div className="animate-chill">
+        <Sprite sprite={sprite} alt={sprite} flip={flip} />
+      </div>
     </div>
   );
 };

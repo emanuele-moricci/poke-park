@@ -3,17 +3,17 @@ import Image from 'next/image';
 interface ISpriteProps {
   sprite: string;
   alt: string;
-  animation: string;
+  flip: string;
 }
 
-const Sprite = ({ sprite, alt, animation }: ISpriteProps): JSX.Element => {
+const Sprite = ({ sprite, alt, flip }: ISpriteProps): JSX.Element => {
   return (
     <Image
       src={sprite}
       alt={alt}
       height="100px"
       width="100px"
-      className={animation}
+      className={flip}
     />
   );
 };
