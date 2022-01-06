@@ -34,12 +34,12 @@ const Home = ({ pkmnCount }: IHomeProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apiResponse = await fetch(`${server}/api/get-pokemon-list`);
+  // const apiResponse = await fetch(`${server}/api/get-pokemon-list`);
 
-  const data = await apiResponse.json();
+  // const data = await apiResponse.json();
 
   return {
-    props: data,
+    props: { pkmnCount: 0 },
   };
 };
 
