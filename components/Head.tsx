@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const Seo: React.FC = () => {
+const SiteHead = (): JSX.Element => {
   return (
     <Head>
       <title>Poképark</title>
@@ -13,4 +13,4 @@ const Seo: React.FC = () => {
   );
 };
 
-export default Seo;
+export default SiteHead;

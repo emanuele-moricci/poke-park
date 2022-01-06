@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 
-import Seo from 'components/Seo';
+import Head from 'components/Head';
 import Title from 'components/Title';
 import Footer from 'components/Footer';
 
@@ -10,7 +10,7 @@ import Park from 'components/park/Park';
 const Home: NextPage = () => {
   return (
     <div className="home">
-      <Seo />
+      <Head />
 
       <Park />
 
