@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from 'next';
+import absoluteUrl from 'next-absolute-url';
 
 import Head from 'components/Head';
 import Title from 'components/Title';
@@ -6,8 +7,6 @@ import Footer from 'components/Footer';
 
 import Park from 'components/park/Park';
 import PokemonSpawner from 'components/pokemon/pokemon.spawner';
-
-import { server } from 'config';
 
 interface IHomeProps {
   pkmnCount: number;
@@ -31,8 +30,10 @@ const Home = ({ pkmnCount }: IHomeProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apiResponse = await fetch(`${server}/api/get-pokemon-list`);
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { origin } = absoluteUrl(req);
+
+  const apiResponse = await fetch(`${origin}/api/get-pokemon-list`);
 
   const data = await apiResponse.json();
 
