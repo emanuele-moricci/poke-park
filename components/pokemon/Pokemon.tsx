@@ -10,7 +10,7 @@ interface IPokemonProps {
 
 const Pokemon = ({ sprite }: IPokemonProps): JSX.Element => {
   const startX = useMemo(() => randomInteger(0, 90), []);
-  const startY = useMemo(() => randomInteger(25, 80), []);
+  const startY = useMemo(() => randomInteger(30, 80), []);
   const changeBehavior = useMemo(() => randomInteger(1500, 4000), []);
 
   let startup = useRef<boolean>(true);

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import bgTest from 'assets/images/pkmn-test-bg.jpeg';
+import bgTest from 'assets/images/pkmn-test-bg.jpg';
 
 const Park = (): JSX.Element => {
   return (
