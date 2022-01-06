@@ -17,7 +17,8 @@ const PokemonSpawner = ({
   useEffect(() => {
     const list = [];
     for (let index = 0; index < pkmnCount; index++) {
-      const sprite: string | null = pkmnList[index].sprites.front_default;
+      const sprite: string | null =
+        pkmnList[index].sprites.versions['generation-viii'].icons.front_default;
       if (!sprite) continue;
 
       list.push(<Pkmn key={index} sprite={sprite} />);

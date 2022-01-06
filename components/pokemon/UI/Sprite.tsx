@@ -11,7 +11,7 @@ const Sprite = ({ sprite, alt, flip }: ISpriteProps): JSX.Element => {
     <Image
       src={sprite}
       alt={alt}
-      height="100px"
+      height="80px"
       width="100px"
       className={flip}
     />
