@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['img.pokemondb.net'],
+    domains: ['raw.githubusercontent.com'],
   },
 };

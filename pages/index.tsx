@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from 'next';
+import type { Pokemon } from 'pokenode-ts';
 import absoluteUrl from 'next-absolute-url';
 
 import Head from 'components/Head';
@@ -10,9 +11,10 @@ import PokemonSpawner from 'components/pokemon/pokemon.spawner';
 
 interface IHomeProps {
   pkmnCount: number;
+  pkmnList: Pokemon[];
 }
 
-const Home = ({ pkmnCount }: IHomeProps) => {
+const Home = ({ ...pkmnData }: IHomeProps) => {
   return (
     <div className="home">
       <Head />
@@ -22,7 +24,7 @@ const Home = ({ pkmnCount }: IHomeProps) => {
       <main className="min-h-screen py-16">
         <Title />
 
-        <PokemonSpawner pkmnCount={pkmnCount} />
+        <PokemonSpawner {...pkmnData} />
       </main>
 
       <Footer />
@@ -34,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
 
   const apiResponse = await fetch(`${origin}/api/get-pokemon-list`);
-
   const data = await apiResponse.json();
 
   return {

@@ -1,28 +1,30 @@
 import { useEffect, useState } from 'react';
-import Pokemon from './Pokemon';
+import type { Pokemon } from 'pokenode-ts';
+
+import Pkmn from './Pokemon';
 
 interface IPokemonSpawnerProps {
   pkmnCount: number;
+  pkmnList: Pokemon[];
 }
 
-const PokemonSpawner = ({ pkmnCount }: IPokemonSpawnerProps): JSX.Element => {
+const PokemonSpawner = ({
+  pkmnCount,
+  pkmnList,
+}: IPokemonSpawnerProps): JSX.Element => {
   const [pkmn, setPkmn] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     const list = [];
     for (let index = 0; index < pkmnCount; index++) {
-      list.push(
-        <Pokemon
-          key={index}
-          sprite={
-            'https://img.pokemondb.net/sprites/lets-go-pikachu-eevee/normal/muk.png'
-          }
-        />
-      );
+      const sprite: string | null = pkmnList[index].sprites.front_default;
+      if (!sprite) continue;
+
+      list.push(<Pkmn key={index} sprite={sprite} />);
     }
 
     setPkmn(list);
-  }, [pkmnCount]);
+  }, [pkmnCount, pkmnList]);
 
   return <div>{pkmn}</div>;
 };
