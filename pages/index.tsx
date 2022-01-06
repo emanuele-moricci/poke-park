@@ -1,13 +1,18 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps } from 'next';
+import randomInteger from 'random-int';
 
 import Head from 'components/Head';
 import Title from 'components/Title';
 import Footer from 'components/Footer';
 
-import Pokemon from 'components/pokemon/Pokemon';
 import Park from 'components/park/Park';
+import PokemonSpawner from 'components/pokemon/pokemon.spawner';
 
-const Home: NextPage = () => {
+interface IHomeProps {
+  pkmnCount: number;
+}
+
+const Home = ({ pkmnCount }: IHomeProps) => {
   return (
     <div className="home">
       <Head />
@@ -17,14 +22,20 @@ const Home: NextPage = () => {
       <main className="min-h-screen py-16">
         <Title />
 
-        <Pokemon sprite="https://img.pokemondb.net/sprites/lets-go-pikachu-eevee/normal/muk.png" />
-        {/* <Pokemon sprite="https://img.pokemondb.net/sprites/black-white/normal/porygon-z.png" /> */}
-        {/* <Pokemon sprite="https://img.pokemondb.net/sprites/sword-shield/normal/exploud.png" /> */}
+        <PokemonSpawner pkmnCount={pkmnCount} />
       </main>
 
       <Footer />
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {
+      pkmnCount: randomInteger(3, 6),
+    },
+  };
 };
 
 export default Home;
