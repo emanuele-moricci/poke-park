@@ -15,22 +15,19 @@ const Pokemon = ({ sprite }: IPokemonProps): JSX.Element => {
 
   let startup = useRef<boolean>(true);
   const [flip, setFlip] = useState<boolean>(false);
-  const [move, setMove] = useState<(number | null)[]>([null, null]);
 
   useEffect(() => {
     setTimeout(() => {
       startup.current = false;
       setFlip(!flip);
-      setMove([randomInteger(0, 90), randomInteger(25, 80)]);
     }, changeBehavior);
-  }, [flip, move, changeBehavior]);
+  }, [changeBehavior, flip]);
 
   return (
     <SpriteContainer
       startX={startX}
       startY={startY}
       sprite={sprite}
-      move={{ x: move[0], y: move[1] }}
       flip={classNames({
         'animate-left': !startup.current && !flip,
         'animate-right': flip,

@@ -18,8 +18,8 @@ const Home: NextPage = () => {
         <Title />
 
         <Pokemon sprite="https://img.pokemondb.net/sprites/lets-go-pikachu-eevee/normal/muk.png" />
-        <Pokemon sprite="https://img.pokemondb.net/sprites/black-white/normal/porygon-z.png" />
-        <Pokemon sprite="https://img.pokemondb.net/sprites/sword-shield/normal/exploud.png" />
+        {/* <Pokemon sprite="https://img.pokemondb.net/sprites/black-white/normal/porygon-z.png" /> */}
+        {/* <Pokemon sprite="https://img.pokemondb.net/sprites/sword-shield/normal/exploud.png" /> */}
       </main>
 
       <Footer />
