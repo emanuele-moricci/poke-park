@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import Sprite from './Sprite';
 
 interface ISpriteContainerProps extends IMovementProps {
@@ -19,18 +17,12 @@ const SpriteContainer = ({
   flip,
 }: ISpriteContainerProps): JSX.Element => {
   return (
-    <StyledSpriteContainer className="absolute" startY={startY} startX={startX}>
+    <div className="absolute" style={{ top: `${startY}%`, left: `${startX}%` }}>
       <div className="animate-chill">
         <Sprite sprite={sprite} alt={sprite} flip={flip} />
       </div>
-    </StyledSpriteContainer>
+    </div>
   );
 };
-
-const StyledSpriteContainer = styled.div`
-  position: absolute;
-  top: ${({ startY }: IMovementProps): string => `${startY}%`};
-  left: ${({ startX }: IMovementProps): string => `${startX}%`};
-`;
 
 export default SpriteContainer;
