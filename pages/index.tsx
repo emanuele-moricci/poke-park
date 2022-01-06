@@ -14,8 +14,6 @@ interface IHomeProps {
 }
 
 const Home = ({ pkmnCount }: IHomeProps) => {
-  console.log(process.env.NODE_ENV);
-
   return (
     <div className="home">
       <Head />
@@ -34,12 +32,12 @@ const Home = ({ pkmnCount }: IHomeProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const apiResponse = await fetch(`${server}/api/get-pokemon-list`);
+  const apiResponse = await fetch(`${server}/api/get-pokemon-list`);
 
-  // const data = await apiResponse.json();
+  const data = await apiResponse.json();
 
   return {
-    props: { pkmnCount: 0 },
+    props: data,
   };
 };
 
