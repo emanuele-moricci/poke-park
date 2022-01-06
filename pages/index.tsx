@@ -14,6 +14,8 @@ interface IHomeProps {
 }
 
 const Home = ({ pkmnCount }: IHomeProps) => {
+  console.log(process.env.NODE_ENV);
+
   return (
     <div className="home">
       <Head />
