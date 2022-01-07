@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { randBehaviour } from 'utils/randomFns';
-import { randX, randY } from 'utils/randomFns';
+import { randLocalX, randLocalY } from 'utils/randomFns';
 import classNames from 'classnames';
 
 import SpriteContainer from './UI/SpriteContainer';
@@ -24,8 +24,8 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
       startup.current = false;
     } else {
       setTimeout(() => {
-        const newX = randX();
-        const newY = randY();
+        const newX = randLocalX(x[1]);
+        const newY = randLocalY(y[1]);
 
         if (x[1] < newX && flip !== 'animate-right') setFlip('animate-right');
         if (x[1] > newX && flip !== 'animate-left' && flip !== '')
