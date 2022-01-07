@@ -19,30 +19,23 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
   let startup = useRef<boolean>(true);
   const [flip, setFlip] = useState<boolean>(false);
 
-  console.log('START', x, y);
   useEffect(() => {
     if (startup.current) {
       startup.current = false;
     } else {
       setTimeout(() => {
-        const newX = [x[1], randX()];
-        const newY = [y[1], randY()];
-
-        console.log('RENDER', newX, newY);
-
         setFlip(!flip);
-        setX(newX);
-        setY(newY);
+        setX([x[1], randX()]);
+        setY([y[1], randY()]);
       }, behaviorChange);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [behaviorChange, flip]);
+  }, [behaviorChange, flip, x, y]);
 
   return (
     <SpriteContainer
       x={x}
       y={y}
-      behaviorChange={behaviorChange}
+      move={behaviorChange}
       sprite={sprite}
       flip={classNames({
         'animate-left': !startup.current && !flip,

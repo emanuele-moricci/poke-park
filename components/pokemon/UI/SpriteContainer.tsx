@@ -12,13 +12,13 @@ interface ISpriteContainerProps extends IMovementProps {
 interface IMovementProps {
   x: number[];
   y: number[];
-  behaviorChange: number;
+  move: number;
 }
 
 const SpriteContainer = ({
   x,
   y,
-  behaviorChange,
+  move,
   sprite,
   flip,
 }: ISpriteContainerProps): JSX.Element => {
@@ -36,7 +36,13 @@ const SpriteContainer = ({
   }, [interact]);
 
   return (
-    <Movement x={x} y={y} behaviorChange={behaviorChange}>
+    <Movement
+      x={x}
+      y={y}
+      move={move}
+      className="absolute"
+      style={{ top: `${y[0]}%`, left: `${x[0]}%` }}
+    >
       <div
         className={classNames({ 'animate-bounce': interact })}
         onClick={interactWithPokemon}
@@ -49,21 +55,15 @@ const SpriteContainer = ({
   );
 };
 
-const getMoveAnimation = (x: number[], y: number[]) => keyframes`
-  0% { top: ${y[0]}%; left: ${x[0]}%; }
- 100% { top: ${y[1]}%; left: ${x[1]}%; }
-`;
-
 const Movement = styled.div`
   animation-name: ${({ x, y }: IMovementProps) => getMoveAnimation(x, y)};
   animation-timing-function: ease-in-out;
-  animation-duration: ${({ behaviorChange }: IMovementProps) =>
-    behaviorChange}ms;
+  animation-duration: ${({ move }: IMovementProps) => move}ms;
   animation-iteration-count: 1;
+`;
 
-  position: absolute;
-  top: ${({ y }: IMovementProps) => y[0]}%;
-  left: ${({ x }: IMovementProps) => x[0]}%;
+const getMoveAnimation = (x: number[], y: number[]) => keyframes`
+ 100% { top: ${y[1]}%; left: ${x[1]}%; }
 `;
 
 export default SpriteContainer;
