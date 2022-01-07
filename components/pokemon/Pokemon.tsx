@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
-import randomInteger from 'random-int';
+import { randBehaviour } from 'utils/randomFns';
+import { randX, randY } from 'utils/randomFns';
 import classNames from 'classnames';
 
 import SpriteContainer from './UI/SpriteContainer';
@@ -11,7 +12,7 @@ interface IPokemonProps {
 }
 
 const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
-  const behaviorChange = useMemo(() => randomInteger(3000, 8000), []);
+  const behaviorChange = useMemo(() => randBehaviour(), []);
   const [x, setX] = useState<number[]>([startX, startX]);
   const [y, setY] = useState<number[]>([startY, startY]);
 
@@ -24,8 +25,8 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
       startup.current = false;
     } else {
       setTimeout(() => {
-        const newX = [x[1], randomInteger(0, 90)];
-        const newY = [y[1], randomInteger(30, 80)];
+        const newX = [x[1], randX()];
+        const newY = [y[1], randY()];
 
         console.log('RENDER', newX, newY);
 
