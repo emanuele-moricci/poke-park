@@ -17,16 +17,22 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
   const [y, setY] = useState<number[]>([startY, startY]);
 
   let startup = useRef<boolean>(true);
-  const [flip, setFlip] = useState<boolean>(false);
+  const [flip, setFlip] = useState<string>('');
 
   useEffect(() => {
     if (startup.current) {
       startup.current = false;
     } else {
       setTimeout(() => {
-        setFlip(!flip);
-        setX([x[1], randX()]);
-        setY([y[1], randY()]);
+        const newX = randX();
+        const newY = randY();
+
+        if (x[1] < newX && flip !== 'animate-right') setFlip('animate-right');
+        if (x[1] > newX && flip !== 'animate-left' && flip !== '')
+          setFlip('animate-left');
+
+        setX([x[1], newX]);
+        setY([y[1], newY]);
       }, behaviorChange);
     }
   }, [behaviorChange, flip, x, y]);
@@ -37,10 +43,7 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
       y={y}
       move={behaviorChange}
       sprite={sprite}
-      flip={classNames({
-        'animate-left': !startup.current && !flip,
-        'animate-right': flip,
-      })}
+      flip={classNames(flip)}
     />
   );
 };
