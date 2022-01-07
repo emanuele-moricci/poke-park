@@ -10,11 +10,10 @@ import Park from 'components/park/Park';
 import PokemonSpawner from 'components/pokemon/pokemon.spawner';
 
 interface IHomeProps {
-  pkmnCount: number;
   pkmnList: Pokemon[];
 }
 
-const Home = ({ ...pkmnData }: IHomeProps) => {
+const Home = ({ pkmnList }: IHomeProps) => {
   return (
     <div className="home">
       <Head />
@@ -24,7 +23,7 @@ const Home = ({ ...pkmnData }: IHomeProps) => {
       <main className="min-h-screen py-16">
         <Title />
 
-        <PokemonSpawner {...pkmnData} />
+        <PokemonSpawner pkmnList={pkmnList} />
       </main>
 
       <Footer />

@@ -1,33 +1,26 @@
-import { useEffect, useState } from 'react';
 import type { Pokemon } from 'pokenode-ts';
+import randomInteger from 'random-int';
 
 import Pkmn from './Pokemon';
 
 interface IPokemonSpawnerProps {
-  pkmnCount: number;
   pkmnList: Pokemon[];
 }
 
-const PokemonSpawner = ({
-  pkmnCount,
-  pkmnList,
-}: IPokemonSpawnerProps): JSX.Element => {
-  const [pkmn, setPkmn] = useState<JSX.Element[]>([]);
+const PokemonSpawner = ({ pkmnList }: IPokemonSpawnerProps): JSX.Element => {
+  return (
+    <>
+      {pkmnList.map((pkmn, i) => {
+        const sprite: string | null =
+          pkmn.sprites.versions['generation-viii'].icons.front_default ?? '';
 
-  useEffect(() => {
-    const list = [];
-    for (let index = 0; index < pkmnCount; index++) {
-      const sprite: string | null =
-        pkmnList[index].sprites.versions['generation-viii'].icons.front_default;
-      if (!sprite) continue;
+        const startX = randomInteger(0, 90);
+        const startY = randomInteger(30, 80);
 
-      list.push(<Pkmn key={index} sprite={sprite} />);
-    }
-
-    setPkmn(list);
-  }, [pkmnCount, pkmnList]);
-
-  return <div>{pkmn}</div>;
+        return <Pkmn key={i} sprite={sprite} startX={startX} startY={startY} />;
+      })}
+    </>
+  );
 };
 
 export default PokemonSpawner;
