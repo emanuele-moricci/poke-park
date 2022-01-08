@@ -1,22 +1,19 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
-import { randBehaviour } from 'utils/randomFns';
-import { randLocalX, randLocalY } from 'utils/randomFns';
-import classNames from 'classnames';
 
-import SpriteContainer from './UI/SpriteContainer';
+import { randBehaviour, randLocalX, randLocalY } from 'utils/randomFns';
+import MovementEffect from 'utils/movementEffect';
 
-interface IPokemonProps {
-  sprite: string;
-  startX: number;
-  startY: number;
+interface IMovementProps {
+  startCoords: number[];
+  children: JSX.Element;
 }
 
-const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
-  const behaviorChange = useMemo(() => randBehaviour(), []);
-  const [x, setX] = useState<number[]>([startX, startX]);
-  const [y, setY] = useState<number[]>([startY, startY]);
-
+const Move = ({ startCoords, children }: IMovementProps): JSX.Element => {
   let startup = useRef<boolean>(true);
+  const behaviorChange = useMemo(() => randBehaviour(), []);
+
+  const [x, setX] = useState<number[]>([startCoords[0], startCoords[0]]);
+  const [y, setY] = useState<number[]>([startCoords[1], startCoords[1]]);
   const [flip, setFlip] = useState<string>('');
 
   useEffect(() => {
@@ -35,17 +32,19 @@ const Pokemon = ({ sprite, startX, startY }: IPokemonProps): JSX.Element => {
         setY([y[1], newY]);
       }, behaviorChange);
     }
-  }, [behaviorChange, flip, x, y]);
+  }, [behaviorChange, flip, setFlip, x, y]);
 
   return (
-    <SpriteContainer
+    <MovementEffect
       x={x}
       y={y}
       move={behaviorChange}
-      sprite={sprite}
-      flip={classNames(flip)}
-    />
+      className="absolute"
+      style={{ top: `${y[0]}%`, left: `${x[0]}%` }}
+    >
+      <div className={flip}>{children}</div>
+    </MovementEffect>
   );
 };
 
-export default Pokemon;
+export default Move;

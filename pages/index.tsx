@@ -1,12 +1,13 @@
-import type { GetServerSideProps } from 'next';
-import type { Pokemon } from 'pokenode-ts';
 import absoluteUrl from 'next-absolute-url';
 
-import Head from 'components/Head';
-import Title from 'components/Title';
-import Footer from 'components/Footer';
+import type { GetServerSideProps } from 'next';
+import type { Pokemon } from 'pokenode-ts';
 
-import Park from 'components/park/Park';
+import Head from 'components/layout/head.component';
+import Title from 'components/layout/title.component';
+import Footer from 'components/layout/footer.component';
+
+import Park from 'components/park/park.component';
 import PokemonSpawner from 'components/pokemon/pokemon.spawner';
 
 interface IHomeProps {

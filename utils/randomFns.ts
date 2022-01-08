@@ -89,3 +89,11 @@ export const randX = () => rand(0, 90);
  * and does not overlap either the header or the footer.
  */
 export const randY = () => rand(30, 80);
+
+/**
+ * This helper function returns a random coordinate set [X, Y] using the `randX` and `randY` helpers.
+ *
+ * These values ensure that the resulting number does not exceed the screen "width <> height"
+ * and does not overlap either the header or the footer.
+ */
+export const randCoords = () => [rand(0, 90), rand(30, 80)];

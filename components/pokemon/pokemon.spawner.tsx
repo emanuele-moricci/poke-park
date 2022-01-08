@@ -1,7 +1,6 @@
 import type { Pokemon } from 'pokenode-ts';
-import { randX, randY } from 'utils/randomFns';
 
-import Pkmn from './Pokemon';
+import Pkmn from './pokemon.component';
 
 interface IPokemonSpawnerProps {
   pkmnList: Pokemon[];
@@ -10,14 +9,11 @@ interface IPokemonSpawnerProps {
 const PokemonSpawner = ({ pkmnList }: IPokemonSpawnerProps): JSX.Element => {
   return (
     <>
-      {pkmnList.map((pkmn, i) => {
+      {pkmnList.map(({ sprites, name }, i) => {
         const sprite: string | null =
-          pkmn.sprites.versions['generation-viii'].icons.front_default ?? '';
+          sprites.versions['generation-viii'].icons.front_default ?? '';
 
-        const startX = randX();
-        const startY = randY();
-
-        return <Pkmn key={i} sprite={sprite} startX={startX} startY={startY} />;
+        return <Pkmn key={i} sprite={sprite} name={name} />;
       })}
     </>
   );
