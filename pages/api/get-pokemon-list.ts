@@ -10,6 +10,7 @@
  * 
  * This API returns a list of random Pokémon, between 3 to 6 in length.
  * The Pokémon are randomly picked from the Pokédex by their ID, between 1 and 898 (up to Gen VIII).
+ * 
  */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { rand, randPkmn } from 'utils/randomFns';
