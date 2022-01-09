@@ -12,12 +12,36 @@
  * 
  */
 import 'assets/styles/globals.css';
-import type { AppProps } from 'next/app';
 
-import wrapper from 'redux/root.store';
+import App, { AppInitialProps } from 'next/app';
+import { END } from 'redux-saga';
 
-function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import wrapper, { SagaStore } from 'redux/root.store';
+
+class WrappedApp extends App<AppInitialProps> {
+  public static getInitialProps = wrapper.getInitialAppProps(
+    (store) => async (context) => {
+      // 1. Wait for all page actions to dispatch
+      const pageProps = {
+        // https://nextjs.org/docs/advanced-features/custom-app#caveats
+        ...(await App.getInitialProps(context)).pageProps,
+      };
+
+      // 2. Stop the saga if on server
+      if (context.ctx.req) {
+        store.dispatch(END);
+        await (store as SagaStore).sagaTask?.toPromise();
+      }
+
+      // 3. Return props
+      return { pageProps };
+    }
+  );
+
+  public render() {
+    const { Component, pageProps } = this.props;
+    return <Component {...pageProps} />;
+  }
 }
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(WrappedApp);

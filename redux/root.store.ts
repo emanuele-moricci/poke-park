@@ -1,21 +1,30 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { Middleware, Store } from 'redux';
-import { createWrapper, Context } from 'next-redux-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
 
-import createSagaMiddleware from '@redux-saga/core';
+import createSagaMiddleware, { Task } from '@redux-saga/core';
 import rootSaga from './root.saga';
 
 import rootReducer from './root.reducer';
 
-const sagaMiddleware = createSagaMiddleware();
+export interface SagaStore extends Store {
+  sagaTask?: Task;
+}
 
-const middlewares: Middleware[] = [sagaMiddleware];
+const makeStore = () => {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares: Middleware[] = [sagaMiddleware];
 
-const makeStore = (context: Context) =>
-  configureStore({ reducer: rootReducer, middleware: middlewares });
-const store = makeStore({});
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: middlewares,
+  });
 
-sagaMiddleware.run(rootSaga);
+  (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
+
+  return store;
+};
+const store = makeStore();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

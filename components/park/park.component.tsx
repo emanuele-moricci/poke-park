@@ -19,10 +19,19 @@ import { selectMode, selectPlay } from 'redux/park/park.selectors';
 
 import bgLight from 'assets/images/bg/pkmn-bg-1-light.jpg';
 import bgDark from 'assets/images/bg/pkmn-bg-1-dark.jpg';
+import { useState } from 'react';
 
 const Park = (): JSX.Element => {
   const darkMode = useSelector(selectMode);
   const play = useSelector(selectPlay);
+
+  useState(() => {
+    if (process.browser)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).soundManager.setup({
+        debugMode: false,
+      });
+  });
 
   return (
     <div className="fixed min-h-screen top-0 bottom-0 left-0 right-0 -z-10">
