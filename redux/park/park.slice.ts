@@ -7,7 +7,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   darkMode: false,
-  play: process.env.NODE_ENV === 'development' ? 'STOPPED' : 'PLAYING',
+  play: 'STOPPED',
 };
 
 const slice = createSlice({
