@@ -4,3 +4,4 @@ import { createSelector } from 'reselect';
 const selectPark = (state: RootState) => state.park;
 
 export const selectMode = createSelector([selectPark], (park) => park.darkMode);
+export const selectPlay = createSelector([selectPark], (park) => park.play);
