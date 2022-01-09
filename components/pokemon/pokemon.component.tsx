@@ -9,9 +9,13 @@ interface IPokemonProps {
 
 const Pokemon = ({ sprite, name }: IPokemonProps): JSX.Element => {
   return (
-    <Behaviour>
-      <Image src={sprite} alt={name} height="80px" width="100px" />
-    </Behaviour>
+    <div suppressHydrationWarning={true}>
+      {process.browser && (
+        <Behaviour>
+          <Image src={sprite} alt={name} height="80px" width="100px" />
+        </Behaviour>
+      )}
+    </div>
   );
 };
 

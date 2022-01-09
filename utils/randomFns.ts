@@ -50,11 +50,21 @@ export const randPkmn = () => rand(1, 898);
  * @param middle The average value of the random number.
  */
 export const randLocal = (min: number, max: number, middle: number): number => {
-  const wiggle = rand(0, 15);
+  const wiggle = rand(1, 15);
   const middleMin = middle - wiggle < min ? min : middle - wiggle;
   const middleMax = middle + wiggle > max ? max : middle + wiggle;
 
-  return rand(middleMin, middleMax);
+  const result = rand(middleMin, middleMax);
+  const toLog =
+    result === middle
+      ? result === max
+        ? result - 1
+        : result === min
+        ? result + 1
+        : result - 1
+      : result;
+
+  return toLog;
 };
 
 /**
