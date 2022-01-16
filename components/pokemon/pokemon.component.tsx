@@ -28,7 +28,7 @@ const Pokemon = ({ sprite, name }: IPokemonProps): JSX.Element => {
   return (
     <div suppressHydrationWarning={true}>
       {process.browser && (
-        <Behaviour>
+        <Behaviour name={name}>
           <Image src={sprite} alt={name} height="80px" width="100px" />
         </Behaviour>
       )}

@@ -10,10 +10,11 @@ import Shadow from '../ui/pokemon.shadow';
 import Speech from '../ui/pokemon.speech';
 
 interface IBehaviourProps {
+  name: string;
   children: JSX.Element;
 }
 
-const Behaviour = ({ children }: IBehaviourProps): JSX.Element => {
+const Behaviour = ({ name, children }: IBehaviourProps): JSX.Element => {
   const [interact, setInteract] = useState(false);
   const coords = randCoords();
 
@@ -21,7 +22,7 @@ const Behaviour = ({ children }: IBehaviourProps): JSX.Element => {
     <Move startCoords={coords}>
       <Shadow interact={interact}>
         <Speech interact={interact}>
-          <Interact interact={interact} setInteract={setInteract}>
+          <Interact name={name} interact={interact} setInteract={setInteract}>
             <Chill interact={interact}>{children}</Chill>
           </Interact>
         </Speech>
