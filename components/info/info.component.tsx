@@ -1,3 +1,20 @@
+/**
+ .___        _____       
+|   | _____/ ____\____  
+|   |/    \   __\/  _ \ 
+|   |   |  \  | (  <_> )
+|___|___|  /__|  \____/ 
+         \/             
+
+ * This component is responsable for showing a drawer when the user interacts
+ * with a specific Pokemon.
+ * The information shown is:
+ * * The Pokemon's name
+ * * The Pokemon's types
+ * * The Pokemon's sprites
+ * * The Pokemon's height and weight
+ * * The Pokemon's stats
+ */
 import React from 'react';
 import classNames from 'classnames';
 
