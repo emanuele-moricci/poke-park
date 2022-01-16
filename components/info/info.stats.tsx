@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PokemonStat } from 'pokenode-ts';
+import type { PokemonStat, PokemonType } from 'pokenode-ts';
 
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
-import { parsePkmnStats } from 'utils/pkmnInfoFns';
+import { convertHex, parsePkmnStats, parsePkmnTyping } from 'utils/pkmnInfoFns';
 
 ChartJS.register(
   RadialLinearScale,
@@ -25,10 +25,12 @@ ChartJS.register(
 
 interface IStatsProps {
   stats: PokemonStat[];
+  types: PokemonType[];
 }
 
-const Stats = ({ stats }: IStatsProps) => {
+const Stats = ({ stats, types }: IStatsProps) => {
   const statsData = parsePkmnStats(stats);
+  const [type1, type2] = parsePkmnTyping(types);
 
   const data = {
     labels: statsData.map(({ name }) => name),
@@ -36,16 +38,27 @@ const Stats = ({ stats }: IStatsProps) => {
       {
         label: 'Stats',
         data: statsData.map(({ value }) => value),
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: type2
+          ? convertHex(type2.color, 0.349)
+          : 'rgba(233, 231, 231, 0.349)',
+        borderColor: type1.color,
         borderWidth: 1,
       },
     ],
   };
 
+  const options = {
+    scales: {
+      radialLinear: {
+        beginAtZero: true,
+        max: 255,
+      },
+    },
+  };
+
   return (
     <div className="w-full mt-5">
-      <Radar data={data} />
+      <Radar data={data} options={options} />
     </div>
   );
 };

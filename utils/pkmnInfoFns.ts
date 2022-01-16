@@ -125,3 +125,15 @@ export const parsePkmnStats = (stats: PokemonStat[]): FullStatData[] => {
     value: stat.base_stat,
   }));
 };
+
+/**
+ * This function takes in a 'Hex Color' value and returns an RGBA CSS function.
+ * Tha Alpha channel is optional and defaults to 1.
+ *
+ * @param hex The hex color value
+ * @param alpha The optional opacity of the color
+ */
+export const convertHex = (hex: string, alpha: number = 1) => {
+  const [r, g, b] = hex.match(/\w\w/g)?.map((x) => parseInt(x, 16)) ?? [];
+  return `rgba(${r},${g},${b},${alpha})`;
+};

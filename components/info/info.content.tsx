@@ -19,7 +19,7 @@ const Content = ({ pkmn }: IContentProps) => {
       <span>ID: {id}</span>
       <span>Height: {(height * 0.1).toFixed(2)} M</span>
       <span>Weight: {(weight * 0.1).toFixed(2)} Kg</span>
-      <Stats stats={stats} />
+      <Stats types={types} stats={stats} />
     </div>
   );
 };
