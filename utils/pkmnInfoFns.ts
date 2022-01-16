@@ -9,7 +9,7 @@
  * This file contains several helper functions used to extrapolate data from the `pokenode-ts` API.
  * 
  */
-import type { PokemonType } from 'pokenode-ts';
+import type { PokemonStat, PokemonType } from 'pokenode-ts';
 import {
   faBolt,
   faBrain,
@@ -36,69 +36,92 @@ import {
   faSkull,
 } from '@fortawesome/free-solid-svg-icons';
 
-export type FullTypeData = {
+export type TypeData = {
   color: string;
-  name: string;
+  name?: string;
   icon: IconDefinition;
 };
 
-type TypeData = {
-  c: string;
-  i: IconDefinition;
+export type FullStatData = {
+  name: string;
+  value: number;
 };
 
 const getTypeData = (name: string): TypeData => {
   switch (name) {
     case 'normal':
-      return { c: '#A8A878', i: faBullseye };
+      return toTypeData('#A8A878', faBullseye);
     case 'fighting':
-      return { c: '#C03028', i: faFistRaised };
+      return toTypeData('#C03028', faFistRaised);
     case 'flying':
-      return { c: '#A890F0', i: faFeatherAlt };
+      return toTypeData('#A890F0', faFeatherAlt);
     case 'poison':
-      return { c: '#A040A0', i: faSkull };
+      return toTypeData('#A040A0', faSkull);
     case 'ground':
-      return { c: '#E0C068', i: faDrumSteelpan };
+      return toTypeData('#E0C068', faDrumSteelpan);
     case 'rock':
-      return { c: '#B8A038', i: faCube };
+      return toTypeData('#B8A038', faCube);
     case 'bug':
-      return { c: '#A8B820', i: faBug };
+      return toTypeData('#A8B820', faBug);
     case 'ghost':
-      return { c: '#705898', i: faGhost };
+      return toTypeData('#705898', faGhost);
     case 'steel':
-      return { c: '#B8B8D0', i: faDatabase };
+      return toTypeData('#B8B8D0', faDatabase);
     case 'fire':
-      return { c: '#F08030', i: faFireAlt };
+      return toTypeData('#F08030', faFireAlt);
     case 'water':
-      return { c: '#6890F0', i: faTint };
+      return toTypeData('#6890F0', faTint);
     case 'grass':
-      return { c: '#78C850', i: faSeedling };
+      return toTypeData('#78C850', faSeedling);
     case 'electric':
-      return { c: '#F8D030', i: faBolt };
+      return toTypeData('#F8D030', faBolt);
     case 'psychic':
-      return { c: '#F85888', i: faBrain };
+      return toTypeData('#F85888', faBrain);
     case 'ice':
-      return { c: '#98D8D8', i: faSnowflake };
+      return toTypeData('#98D8D8', faSnowflake);
     case 'dragon':
-      return { c: '#7038F8', i: faDragon };
+      return toTypeData('#7038F8', faDragon);
     case 'dark':
-      return { c: '#705848', i: faHamsa };
+      return toTypeData('#705848', faHamsa);
     case 'fairy':
-      return { c: '#EE99AC', i: faStar };
+      return toTypeData('#EE99AC', faStar);
     default:
-      return { c: '#FFFFFF', i: faQuestion };
+      return toTypeData('#FFFFFF', faQuestion);
   }
 };
 
-const constructTypeData = ({ type: { name } }: PokemonType): FullTypeData => {
-  const { c, i } = getTypeData(name);
-
+const toTypeData = (color: string, icon: IconDefinition): TypeData => {
   return {
-    color: c,
-    name,
-    icon: i,
+    color,
+    icon,
   };
 };
 
-export const parsePkmnTyping = (types: PokemonType[]): FullTypeData[] =>
-  types.map((type) => constructTypeData(type));
+/**
+ * This function parses the API Types object into a more readable format
+ * and associates both a color and an icon to every given type.
+ *
+ * @param types The types array of the pokemon (either single or multi-typed)
+ */
+export const parsePkmnTyping = (types: PokemonType[]): TypeData[] =>
+  types.map(({ type }) => {
+    const { color, icon } = getTypeData(type.name);
+
+    return {
+      color,
+      name: type.name,
+      icon,
+    };
+  });
+
+/**
+ * This function parses the API Stats object into a more readable format.
+ *
+ * @param stats The stats array of a pokemon
+ */
+export const parsePkmnStats = (stats: PokemonStat[]): FullStatData[] => {
+  return stats.map((stat) => ({
+    name: stat.stat.name,
+    value: stat.base_stat,
+  }));
+};
