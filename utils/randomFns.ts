@@ -5,7 +5,7 @@ __________                    .___
  |    |   \ / __ \|   |  \/ /_/ (  <_> )  Y Y  \
  |____|_  /(____  /___|  /\____ |\____/|__|_|  /
         \/      \/     \/      \/            \/ 
- * 
+ 
  * This file contains several helper functions for randomness.
  * They are used throughout the project to pick different Pokémon, coordinates ecc...
  * 
