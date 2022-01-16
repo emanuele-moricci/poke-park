@@ -1,6 +1,8 @@
 import React from 'react';
-import type { Pokemon } from 'pokenode-ts';
 import Image from 'next/image';
+import type { Pokemon } from 'pokenode-ts';
+
+import Typing from './info.typing';
 
 interface IContentProps {
   pkmn: Pokemon;
@@ -13,11 +15,15 @@ const Content = ({ pkmn }: IContentProps) => {
     height,
     weight,
     sprites: { front_default, front_shiny },
+    types,
+    ...rest
   } = pkmn;
+  console.log(rest);
 
   return (
     <div className="pl-4 flex flex-col items-start">
-      <div className="mb-14 flex flex-row items-center justify-center w-full">
+      <Typing types={types} />
+      <div className="my-10 flex flex-row items-center justify-center w-full">
         <Image
           src={front_default ?? ''}
           alt={`${name} - Default`}
@@ -32,8 +38,8 @@ const Content = ({ pkmn }: IContentProps) => {
         />
       </div>
       <span>ID: {id}</span>
-      <span>Height: {height}</span>
-      <span>Weight: {weight}</span>
+      <span>Height: {(height * 0.1).toFixed(2)} Meters</span>
+      <span>Weight: {(weight * 0.1).toFixed(2)} Kilograms</span>
     </div>
   );
 };
