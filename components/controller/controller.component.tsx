@@ -26,6 +26,8 @@ import {
   faRecycle,
 } from '@fortawesome/free-solid-svg-icons';
 
+import Button from './controller.button';
+
 const Controller = (): JSX.Element => {
   const dispatch = useDispatch();
   const loading = useSelector(selectPkmnLoading);
@@ -34,27 +36,22 @@ const Controller = (): JSX.Element => {
 
   return (
     <>
-      <button
-        className="absolute top-[2%] left-[90%] z-50"
+      <Button
+        classname="left-[90%]"
         disabled={loading}
         onClick={() => dispatch(pokemonActions.fetchPokemonStart())}
-      >
-        <FontAwesomeIcon icon={faRecycle} />
-      </button>
-      <button
-        className="absolute top-[2%] left-[93%] z-50"
+        icon={faRecycle}
+      />
+      <Button
+        classname="left-[93%]"
         onClick={() => dispatch(parkActions.toggleMode())}
-      >
-        <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
-      </button>
-      <button
-        className="absolute top-[2%] left-[96%] z-50"
+        icon={darkMode ? faMoon : faSun}
+      />
+      <Button
+        classname="left-[96%]"
         onClick={() => dispatch(parkActions.togglePlay())}
-      >
-        <FontAwesomeIcon
-          icon={play !== 'PLAYING' ? faVolumeMute : faVolumeUp}
-        />
-      </button>
+        icon={play !== 'PLAYING' ? faVolumeMute : faVolumeUp}
+      />
     </>
   );
 };
