@@ -46,6 +46,12 @@ const Drawer = () => {
           { 'translate-x-0': isOpen, 'translate-x-full': !isOpen }
         )}
       >
+        <div
+          className="absolute top-4 right-3 text-xl cursor-pointer z-10 transition ease-in-out hover:scale-125 duration-150"
+          onClick={closeDrawer}
+        >
+          X
+        </div>
         <article className="relative w-screen max-w-lg pb-10 flex flex-col overflow-y-scroll h-full">
           <header className="p-4 font-bold text-lg capitalize">
             {pkmn?.name}
