@@ -11,7 +11,6 @@ interface IContentProps {
 
 const Content = ({ pkmn }: IContentProps) => {
   const { id, name, height, weight, sprites, types, stats } = pkmn;
-  console.log(pkmn);
 
   return (
     <div className="px-4 flex flex-col items-start">
