@@ -10,6 +10,8 @@ module.exports = {
       },
       animation: {
         chill: 'chill 1s infinite;',
+        shadow: 'shadow 1s infinite;',
+        'shadow-interact': 'shadow-interact 1s infinite;',
         right: 'right 0.5s 1 cubic-bezier(0.8, 0, 1, 1) forwards;',
         left: 'left 0.5s 1 cubic-bezier(0.8, 0, 1, 1) forwards;',
       },
@@ -21,6 +23,34 @@ module.exports = {
           },
           '50%': {
             transform: 'translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+        },
+        shadow: {
+          '0%, 100%': {
+            width: '2rem',
+            opacity: '0.4',
+            transform: 'rotateX(70deg)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            width: '2.5rem',
+            opacity: '0.5',
+            transform: 'rotateX(68deg)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+        },
+        'shadow-interact': {
+          '0%, 100%': {
+            width: '2rem',
+            opacity: '0.4',
+            transform: 'rotateX(70deg)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            width: '2.5rem',
+            opacity: '0.5',
+            transform: 'rotateX(68deg)',
             'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
           },
         },

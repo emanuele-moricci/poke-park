@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Spinner from './pokemon.spinner';
+import Spinner from './ui/pokemon.spinner';
 import Pkmn from './pokemon.component';
 import { selectPkmnList } from 'redux/pokemon/pokemon.selectors';
 import { pokemonActions } from 'redux/pokemon/pokemon.slice';

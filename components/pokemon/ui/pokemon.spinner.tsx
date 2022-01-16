@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import Loading from 'assets/poke-loading.gif';
 
-const PokemonSpawner = (): JSX.Element => (
+const PokemonSpinner = (): JSX.Element => (
   <div className="w-screen h-screen text-center">
     <Image
       src={Loading}
@@ -15,4 +15,4 @@ const PokemonSpawner = (): JSX.Element => (
   </div>
 );
 
-export default PokemonSpawner;
+export default PokemonSpinner;
