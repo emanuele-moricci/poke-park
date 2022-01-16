@@ -17,7 +17,6 @@ import { pokemonActions } from 'redux/pokemon/pokemon.slice';
 import { selectMode, selectPlay } from 'redux/park/park.selectors';
 import { selectPkmnLoading } from 'redux/pokemon/pokemon.selectors';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMoon,
   faSun,
