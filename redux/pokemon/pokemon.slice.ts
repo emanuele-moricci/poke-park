@@ -20,7 +20,9 @@ const slice = createSlice({
     setOriginUrl: (state, action) => {
       state.originUrl = action.payload;
     },
-    fetchPokemonStart: () => {},
+    fetchPokemonStart: (state) => {
+      state.pkmnList = [];
+    },
     fetchPokemonSuccess: (state, action) => {
       state.pkmnList = action.payload;
     },

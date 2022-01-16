@@ -11,6 +11,10 @@ export const selectPkmnList = createSelector(
   [selectPokemon],
   (pkmn) => pkmn.pkmnList
 );
+export const selectPkmnLoading = createSelector(
+  [selectPokemon],
+  (pkmn) => pkmn.pkmnList.length === 0
+);
 export const selectPkmnListError = createSelector(
   [selectPokemon],
   (pkmn) => pkmn.fetchError

@@ -13,26 +13,47 @@
  */
 import { useDispatch, useSelector } from 'react-redux';
 import { parkActions } from 'redux/park/park.slice';
+import { pokemonActions } from 'redux/pokemon/pokemon.slice';
 import { selectMode, selectPlay } from 'redux/park/park.selectors';
+import { selectPkmnLoading } from 'redux/pokemon/pokemon.selectors';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMoon,
+  faSun,
+  faVolumeMute,
+  faVolumeUp,
+  faRecycle,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Controller = (): JSX.Element => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectPkmnLoading);
   const darkMode = useSelector(selectMode);
   const play = useSelector(selectPlay);
 
   return (
     <>
       <button
-        className="absolute top-[5%] left-[90%] z-50"
-        onClick={() => dispatch(parkActions.toggleMode())}
+        className="absolute top-[2%] left-[90%] z-50"
+        disabled={loading}
+        onClick={() => dispatch(pokemonActions.fetchPokemonStart())}
       >
-        {darkMode ? '🌙' : '☀️'}
+        <FontAwesomeIcon icon={faRecycle} />
       </button>
       <button
-        className="absolute top-[5%] left-[95%] z-50"
+        className="absolute top-[2%] left-[93%] z-50"
+        onClick={() => dispatch(parkActions.toggleMode())}
+      >
+        <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
+      </button>
+      <button
+        className="absolute top-[2%] left-[96%] z-50"
         onClick={() => dispatch(parkActions.togglePlay())}
       >
-        {play !== 'PLAYING' ? '🔇' : '🔊'}
+        <FontAwesomeIcon
+          icon={play !== 'PLAYING' ? faVolumeMute : faVolumeUp}
+        />
       </button>
     </>
   );
