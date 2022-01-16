@@ -11,6 +11,23 @@ __________                    .___
  * 
  */
 import randomInteger from 'random-int';
+import {
+  faAngry,
+  faAppleAlt,
+  faCloudRain,
+  faCookieBite,
+  faCrown,
+  faDizzy,
+  faFlushed,
+  faGrinBeam,
+  faGrinHearts,
+  faGrinSquintTears,
+  faLightbulb,
+  faPizzaSlice,
+  faPoop,
+  faSadTear,
+  faSkull,
+} from '@fortawesome/free-solid-svg-icons';
 
 /**
  * The base function for picking a random integer.
@@ -107,3 +124,31 @@ export const randY = () => rand(30, 80);
  * and does not overlap either the header or the footer.
  */
 export const randCoords = () => [rand(0, 90), rand(30, 80)];
+
+/**
+ * This helper function returns a random Speech Bubble Icon, used when you
+ * interact with a Pokémon.
+ *
+ * @returns A random icon from the `@fortawesome/free-solid-svg-icons` library.
+ */
+export const randIcon = () => {
+  const icons = [
+    faAngry,
+    faAppleAlt,
+    faCloudRain,
+    faCookieBite,
+    faCrown,
+    faDizzy,
+    faFlushed,
+    faGrinBeam,
+    faGrinHearts,
+    faGrinSquintTears,
+    faLightbulb,
+    faPizzaSlice,
+    faPoop,
+    faSadTear,
+    faSkull,
+  ];
+
+  return icons[rand(0, icons.length - 1)];
+};
