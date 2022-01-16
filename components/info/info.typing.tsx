@@ -28,7 +28,7 @@ const Types = ({ types }: ITypesProps) => {
 const SingleType = ({ type }: ITypeProps) => {
   return (
     <div
-      className="h-[35px] p-5 flex flex-row items-center justify-between rounded-md"
+      className="h-[35px] p-5 flex flex-row items-center justify-between rounded-md transition ease-in-out hover:-translate-y-1 duration-300"
       style={{ backgroundColor: type.color }}
     >
       <FontAwesomeIcon icon={type.icon} className="mr-2" />
