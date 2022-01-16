@@ -18,6 +18,10 @@ import { END } from 'redux-saga';
 
 import wrapper, { SagaStore } from 'redux/root.store';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
+
 class WrappedApp extends App<AppInitialProps> {
   public static getInitialProps = wrapper.getInitialAppProps(
     (store) => async (context) => {
