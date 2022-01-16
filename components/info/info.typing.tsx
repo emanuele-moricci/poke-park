@@ -3,14 +3,14 @@ import type { PokemonType } from 'pokenode-ts';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { FullTypeData, parsePkmnTyping } from 'utils/pkmnInfoFns';
+import { TypeData, parsePkmnTyping } from 'utils/pkmnInfoFns';
 
 interface ITypesProps {
   types: PokemonType[];
 }
 
 interface ITypeProps {
-  type: FullTypeData;
+  type: TypeData;
 }
 
 const Types = ({ types }: ITypesProps) => {
