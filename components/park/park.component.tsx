@@ -34,7 +34,7 @@ const Park = (): JSX.Element => {
   });
 
   return (
-    <div className="fixed min-h-screen top-0 bottom-0 left-0 right-0 -z-10">
+    <div className="fixed min-h-full top-0 bottom-0 left-0 right-0 -z-10">
       <Sound
         url={require('../../assets/music/little-root-town.mp3')}
         playStatus={play}

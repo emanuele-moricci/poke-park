@@ -31,7 +31,7 @@ const Home: NextPage = () => {
       <Controller />
       <Info />
 
-      <main className="min-h-screen py-16">
+      <main className="min-h-full py-16">
         <Title />
 
         <PokemonSpawner />

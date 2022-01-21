@@ -42,7 +42,7 @@ const Drawer = () => {
     >
       <section
         className={classNames(
-          'w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform',
+          'w-full max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform',
           { 'translate-x-0': isOpen, 'translate-x-full': !isOpen }
         )}
       >
@@ -52,7 +52,7 @@ const Drawer = () => {
         >
           X
         </div>
-        <article className="relative w-screen max-w-lg pb-10 flex flex-col overflow-y-scroll h-full">
+        <article className="relative w-full max-w-lg pb-10 flex flex-col overflow-y-scroll h-full">
           <header className="p-4 font-bold text-lg capitalize">
             {pkmn?.name}
           </header>
@@ -60,7 +60,7 @@ const Drawer = () => {
         </article>
       </section>
       <section
-        className="w-screen h-full cursor-pointer"
+        className="w-full h-full cursor-pointer"
         onClick={closeDrawer}
       ></section>
     </main>

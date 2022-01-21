@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Loading from 'assets/poke-loading.gif';
 
 const PokemonSpinner = (): JSX.Element => (
-  <div className="w-screen h-screen text-center">
+  <div className="w-full h-full text-center">
     <Image
       src={Loading}
       alt={'loading...'}
