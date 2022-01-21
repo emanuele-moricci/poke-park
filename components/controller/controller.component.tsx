@@ -34,7 +34,7 @@ const Controller = (): JSX.Element => {
   const play = useSelector(selectPlay);
 
   return (
-    <div className="absolute z-50 w-20 flex flex-row justify-between items-center top-[2%] left-[75%] sm:left-[80%] md:left-[85%] lg:left-[90%] xl:left-[95%]">
+    <div className="absolute z-50 w-20 flex flex-row justify-between items-center top-[2%] right-[2%]">
       <Button
         disabled={loading}
         onClick={() => dispatch(pokemonActions.fetchPokemonStart())}
