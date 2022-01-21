@@ -1,8 +1,19 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const withPWA = require('next-pwa');
+
+module.exports = withPWA({
   reactStrictMode: true,
   images: {
     domains: ['raw.githubusercontent.com'],
+  },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
   },
   webpack(config, options) {
     const { isServer } = options;
@@ -26,4 +37,4 @@ module.exports = {
 
     return config;
   },
-};
+});
