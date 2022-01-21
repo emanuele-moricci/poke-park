@@ -11,7 +11,7 @@
  * The pokemon, created by the spawner, which data is fetched by the API,
  * will be instanced with the following behaviours:
  * * A random walk logic
- * * A random idle animation
+ * * A bouncing idle animation
  * * A random interaction animation
  *
  */
@@ -26,7 +26,7 @@ interface IPokemonProps {
 
 const Pokemon = ({ sprite, name }: IPokemonProps): JSX.Element => {
   return (
-    <div suppressHydrationWarning={true}>
+    <div suppressHydrationWarning={true} className="cursor-pointer">
       {process.browser && (
         <Behaviour name={name}>
           <Image src={sprite} alt={name} height="80px" width="100px" />
