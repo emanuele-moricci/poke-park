@@ -10,7 +10,6 @@ __________                    .___
  * They are used throughout the project to pick different Pokémon, coordinates ecc...
  * 
  */
-import randomInteger from 'random-int';
 import {
   faAngry,
   faAppleAlt,
@@ -37,7 +36,7 @@ import {
  * @param max The maximum value of the random integer.
  */
 export const rand = (min: number, max: number): number =>
-  randomInteger(min, max);
+  Math.floor(Math.random() * (max - min) + min);
 
 /**
  * This helper function returns a random time in milliseconds,
@@ -90,7 +89,7 @@ export const randLocal = (min: number, max: number, middle: number): number => {
  *
  * @param middle  The average value of the random coordinate.
  */
-export const randLocalX = (middle: number) => randLocal(0, 90, middle);
+export const randLocalX = (middle: number) => randLocal(10, 80, middle);
 
 /**
  * This helper function returns a random Y coordinate between a min and a max,
@@ -101,12 +100,12 @@ export const randLocalX = (middle: number) => randLocal(0, 90, middle);
 export const randLocalY = (middle: number) => randLocal(30, 80, middle);
 
 /**
- * This helper function returns a random X coordinate between 0 and a 90,
+ * This helper function returns a random X coordinate between 10 and a 80,
  * which are the screen width thresholds in percentage.
  *
  * These values ensure that the resulting number does not exceed the screen width.
  */
-export const randX = () => rand(0, 90);
+export const randX = () => rand(10, 80);
 
 /**
  * This helper function returns a random Y coordinate between 30 and a 80,
@@ -123,7 +122,7 @@ export const randY = () => rand(30, 80);
  * These values ensure that the resulting number does not exceed the screen "width <> height"
  * and does not overlap either the header or the footer.
  */
-export const randCoords = () => [rand(0, 90), rand(30, 80)];
+export const randCoords = () => [randX(), randY()];
 
 /**
  * This helper function returns a random Speech Bubble Icon, used when you

@@ -11,12 +11,12 @@
  * Watch your Pokémon move around the park, put on some music and just relax 💤
  * 
  */
-import 'assets/styles/globals.css';
-
 import App, { AppInitialProps } from 'next/app';
 import { END } from 'redux-saga';
 
 import wrapper, { SagaStore } from 'redux/root.store';
+
+import 'assets/styles/globals.css';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';

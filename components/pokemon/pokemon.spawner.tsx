@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Spinner from './ui/pokemon.spinner';
-import Pkmn from './pokemon.component';
 import { selectPkmnList } from 'redux/pokemon/pokemon.selectors';
 import { pokemonActions } from 'redux/pokemon/pokemon.slice';
+
+const Pkmn = dynamic(() => import('./pokemon.component'));
 
 const PokemonSpawner = (): JSX.Element => {
   const dispatch = useDispatch();
