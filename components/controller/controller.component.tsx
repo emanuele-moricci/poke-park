@@ -34,24 +34,21 @@ const Controller = (): JSX.Element => {
   const play = useSelector(selectPlay);
 
   return (
-    <>
+    <div className="absolute z-50 w-20 flex flex-row justify-between items-center top-[2%] left-[75%] sm:left-[80%] md:left-[85%] lg:left-[90%] xl:left-[95%]">
       <Button
-        classname="left-[90%]"
         disabled={loading}
         onClick={() => dispatch(pokemonActions.fetchPokemonStart())}
         icon={faRecycle}
       />
       <Button
-        classname="left-[93%]"
         onClick={() => dispatch(parkActions.toggleMode())}
         icon={darkMode ? faMoon : faSun}
       />
       <Button
-        classname="left-[96%]"
         onClick={() => dispatch(parkActions.togglePlay())}
         icon={play !== 'PLAYING' ? faVolumeMute : faVolumeUp}
       />
-    </>
+    </div>
   );
 };
 
