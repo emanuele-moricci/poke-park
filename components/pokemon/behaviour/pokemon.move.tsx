@@ -71,7 +71,12 @@ const Move = ({ startCoords, children }: IMovementProps): JSX.Element => {
       y={[state.y.from, state.y.to]}
       move={behaviorChange}
       className="absolute"
-      style={{ left: `${state.x.from}%`, top: `${state.y.from}%` }}
+      style={{
+        left: `${state.x.from}%`,
+        top: `${state.y.from}%`,
+        WebkitPerspective: 1000,
+        WebkitBackfaceVisibility: 'hidden',
+      }}
     >
       <div className={state.flip}>{children}</div>
     </MovementEffect>
