@@ -35,8 +35,8 @@ const Drawer = () => {
       className={classNames(
         'fixed overflow-hidden bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out z-[60]',
         {
-          'transition-opacity opacity-100 duration-500 translate-x-0': isOpen,
-          'transition-all delay-500 opacity-0 translate-x-full': !isOpen,
+          'transition-opacity opacity-100 duration-200 translate-x-0': isOpen,
+          'transition-all delay-200 opacity-0 translate-x-full': !isOpen,
         }
       )}
     >
