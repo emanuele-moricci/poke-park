@@ -17,10 +17,10 @@ const PokemonSpeech = ({ interact, children }: ISpeechProps): JSX.Element => {
   }, [interact]);
 
   return (
-    <>
+    <div className="relative">
       <FontAwesomeIcon
         icon={faComment}
-        className="text-white -mb-[45px] mr-[60px] z-10 text-lg"
+        className="text-white z-10 text-lg absolute top-5 left-1"
         style={{
           transform: 'rotateY(180deg)',
           fontSize: '20px',
@@ -29,7 +29,7 @@ const PokemonSpeech = ({ interact, children }: ISpeechProps): JSX.Element => {
       />
       <FontAwesomeIcon
         icon={icon}
-        className="text-black -mb-[45px] mr-[60px] z-20 absolute top-1"
+        className="text-black z-20 absolute top-6 left-2"
         fontSize="12px"
         style={{
           fontSize: '10px',
@@ -37,7 +37,7 @@ const PokemonSpeech = ({ interact, children }: ISpeechProps): JSX.Element => {
         }}
       />
       {children}
-    </>
+    </div>
   );
 };
 

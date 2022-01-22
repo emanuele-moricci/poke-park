@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       <Park />
 
       <Controller />
-      <Info />
+      {/* <Info /> */}
 
       <main className="min-h-full py-16">
         <Title />

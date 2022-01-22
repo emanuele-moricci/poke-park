@@ -52,7 +52,7 @@ const Drawer = () => {
         >
           X
         </div>
-        <article className="relative w-full max-w-lg pb-10 flex flex-col overflow-y-scroll h-full">
+        <article className="relative w-full max-w-lg pb-10 flex flex-col overflow-y-auto h-full">
           <header className="p-4 font-bold text-lg capitalize">
             {pkmn?.name}
           </header>
