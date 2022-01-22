@@ -37,17 +37,23 @@ const Stats = ({ stats, types }: IStatsProps) => {
     datasets: [
       {
         label: 'Stats',
+        pointStyle: 'rect',
         data: statsData.map(({ value }) => value),
         backgroundColor: type2
           ? convertHex(type2.color, 0.349)
           : 'rgba(233, 231, 231, 0.349)',
         borderColor: type1.color,
-        borderWidth: 1,
+        borderWidth: 2,
       },
     ],
   };
 
   const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       radialLinear: {
         beginAtZero: true,
